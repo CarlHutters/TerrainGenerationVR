@@ -7,5 +7,5 @@ TREES
 		Poisson disc sampling
 
 TERRAIN
-	Celular automaton
+	Celular automata
 		(apply rules to terrain and get neighbor tile data)
