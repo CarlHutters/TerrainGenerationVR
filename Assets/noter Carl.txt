@@ -1,0 +1,11 @@
+TREES
+	Generation:
+		l system
+		colonalization
+
+	Distribution:
+		Poisson disc sampling
+
+TERRAIN
+	Celular automata
+		(apply rules to terrain and get neighbor tile data)

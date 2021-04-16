@@ -67,13 +67,24 @@ public class MeshSphereGenerator : MonoBehaviour
         {
             for (int x = 0; x < xSize; x++)
             {
-                triangles[tris + 0] = vert + 0;
-                triangles[tris + 1] = vert + xSize + 1;
-                triangles[tris + 2] = vert + 1;
-                triangles[tris + 3] = vert + 1;
-                triangles[tris + 4] = vert + xSize + 1;
-                triangles[tris + 5] = vert + xSize + 2;            
-            
+                if(z>=zSize/2)
+                {
+                    triangles[tris + 0] = vert + 0;
+                    triangles[tris + 1] = vert + xSize + 1;
+                    triangles[tris + 2] = vert + 1;
+                    triangles[tris + 3] = vert + 1;
+                    triangles[tris + 4] = vert + xSize + 1;
+                    triangles[tris + 5] = vert + xSize + 2;
+                } else 
+                {
+                    triangles[tris + 0] = vert + 0;
+                    triangles[tris + 2] = vert + xSize + 1;
+                    triangles[tris + 1] = vert + 1;
+                    triangles[tris + 3] = vert + 1;
+                    triangles[tris + 5] = vert + xSize + 1;
+                    triangles[tris + 4] = vert + xSize + 2;
+                }
+               
                 vert++;
                 tris += 6;
 
@@ -88,9 +99,33 @@ public class MeshSphereGenerator : MonoBehaviour
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
-
         mesh.RecalculateNormals();
+        //FlipNormals();
+    }
 
-        Debug.Log(mesh.normals);
+
+    void FlipNormals()
+    {
+        Vector3[] normals = mesh.normals;
+        for (int i = 0; i < normals.Length; i++)
+        {
+            if(i % 2 == 0)
+            normals[i] = -1*normals[i];
+        }
+            
+        mesh.normals = normals;
+
+        for (int i = 0; i < mesh.subMeshCount; i++)
+        {
+            int[] tris = mesh.GetTriangles(i);
+            for (int j = 0; j < tris.Length; j+=3)
+            {
+                int temp = tris[j];
+                tris[j] = tris[j+1];
+                tris[j+1 ]= temp;
+            }
+            mesh.SetTriangles(tris,i);
+        }
+
     }
 }
