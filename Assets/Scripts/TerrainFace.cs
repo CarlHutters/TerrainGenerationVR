@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainFace {
+public class TerrainFace : MonoBehaviour{
 
     Mesh mesh;
     int resolution;
@@ -32,12 +32,10 @@ public class TerrainFace {
             {
                 int i = x + y * resolution;
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
-                Debug.Log("percent: " + percent);
                 Vector2 percent2 = new Vector2(x / (resolution - 1), y / (resolution - 1));
-                Debug.Log("percent2: " + percent2);
                 Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
                 Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                vertices[i] = pointOnUnitSphere;
+                vertices[i] = pointOnUnitCube;
 
                 if (x != resolution - 1 && y != resolution - 1)
                 {
