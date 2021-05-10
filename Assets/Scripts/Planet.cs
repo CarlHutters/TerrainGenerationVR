@@ -7,6 +7,9 @@ public class Planet : MonoBehaviour {
     [Range(2,256)]
     public int resolution = 10;
 
+    [Range(0,1)]
+    public float inflate = 0f;
+
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
@@ -39,7 +42,7 @@ public class Planet : MonoBehaviour {
                 meshFilters[i].sharedMesh = new Mesh();
             }
 
-            terrainFaces[i] = new TerrainFace(meshFilters[i].sharedMesh, resolution, directions[i]);
+            terrainFaces[i] = new TerrainFace(meshFilters[i].sharedMesh, resolution, directions[i], inflate);
         }
     }
 

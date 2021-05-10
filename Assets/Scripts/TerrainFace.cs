@@ -7,14 +7,16 @@ public class TerrainFace : MonoBehaviour{
     Mesh mesh;
     int resolution;
     Vector3 localUp;
+    float inflate;
     Vector3 axisA;
     Vector3 axisB;
 
-    public TerrainFace(Mesh mesh, int resolution, Vector3 localUp)
+    public TerrainFace(Mesh mesh, int resolution, Vector3 localUp, float inflate)
     {
         this.mesh = mesh;
         this.resolution = resolution;
         this.localUp = localUp;
+        this.inflate = inflate;
 
         axisA = new Vector3(localUp.y, localUp.z, localUp.x);
         axisB = Vector3.Cross(localUp, axisA);
@@ -23,7 +25,7 @@ public class TerrainFace : MonoBehaviour{
     public void ConstructMesh()
     {
         Vector3[] vertices = new Vector3[resolution * resolution];
-        int[] triangles = new int[(resolution - 1) * (resolution - 1) * 6];
+        int[] triangles = new int[(resolution - 1) * (resolution - 1) * 2 * 3];
         int triIndex = 0;
 
         for (int y = 0; y < resolution; y++)
@@ -33,9 +35,12 @@ public class TerrainFace : MonoBehaviour{
                 int i = x + y * resolution;
                 Vector2 percent = new Vector2(x, y) / (resolution - 1);
                 Vector2 percent2 = new Vector2(x / (resolution - 1), y / (resolution - 1));
-                Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
-                Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                vertices[i] = pointOnUnitCube;
+                
+                float perl = Mathf.PerlinNoise(x*.3f, y*.3f);
+                Vector3 pointOnUnitCube = localUp*perl + (percent.x - .5f) * 2 * axisA + (percent.y - .5f) * 2 * axisB;
+                Vector3 pointOnUnitSphere = pointOnUnitCube.normalized + new Vector3(localUp.x, localUp.y * perl, localUp.z);
+
+                vertices[i] = inflate * (pointOnUnitCube-pointOnUnitSphere) + pointOnUnitSphere;
 
                 if (x != resolution - 1 && y != resolution - 1)
                 {
