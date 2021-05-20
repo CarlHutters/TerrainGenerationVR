@@ -1232,6 +1232,7 @@ GameObject:
   - component: {fileID: 1403520157}
   - component: {fileID: 1403520156}
   - component: {fileID: 1403520155}
+  - component: {fileID: 1403520159}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -1316,6 +1317,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1403520159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403520154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 202a6e24b48d1684398409c47161adcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingOriginTransform: {fileID: 0}
+  hmdTransforms: []
+  hands: []
+  headCollider: {fileID: 0}
+  rigSteamVR: {fileID: 0}
+  rig2DFallback: {fileID: 0}
+  audioListener: {fileID: 0}
+  headsetOnHead:
+    actionPath: /actions/default/in/HeadsetOnHead
+    needsReinit: 0
+  allowToggleTo2D: 1
 --- !u!1 &1485568019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,7 +1547,6 @@ MonoBehaviour:
   xOff1Total: 0
   xOff2Total: 0
   xOff3Total: 0
-  lineRendererXoffRange: {fileID: 0}
   lineRendererOctave1: {fileID: 2099952808}
   lineRendererOctave2: {fileID: 662060983}
   lineRendererOctave3: {fileID: 1019714353}
@@ -1691,7 +1714,7 @@ GameObject:
   - component: {fileID: 1872474962}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

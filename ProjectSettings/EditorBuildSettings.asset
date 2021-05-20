@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TreeTEST.unity
     guid: 7eacc011bd415014ca201cee294fc4f6
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 3080fd9fc4a8bf644b1beccb27021d72, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 16b2e2784f5035a4e87e5fcd2c3d10ed, type: 2}
