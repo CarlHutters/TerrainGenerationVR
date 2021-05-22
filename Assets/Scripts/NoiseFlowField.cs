@@ -80,7 +80,6 @@ public class NoiseFlowField : MonoBehaviour
                 }
             }
         }
-        Debug.Log(particles.Count);
     }
 
     private void Update()
@@ -166,7 +165,7 @@ public class NoiseFlowField : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(this.transform.position + new Vector3((gridSize.x * cellSize) * 0.5f, (gridSize.y * cellSize) * 0.5f, (gridSize.z * cellSize) * 0.5f),
+        Gizmos.DrawWireCube(transform.position + new Vector3((gridSize.x * cellSize) * 0.5f, (gridSize.y * cellSize) * 0.5f, (gridSize.z * cellSize) * 0.5f),
         new Vector3(gridSize.x * cellSize, gridSize.y * cellSize, gridSize.z * cellSize));
     }
 
